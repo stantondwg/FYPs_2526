@@ -45,7 +45,7 @@ Once logged in, check your current location:
 
 ```bash
 pwd
-````
+```
 
 This prints your **present working directory**.
 
@@ -259,4 +259,4 @@ By the end of this exercise, you should be able to:
 These are core skills for computational biology and research projects — take your time and experiment carefully.
 
 ```
-```
+````
