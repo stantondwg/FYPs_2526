@@ -54,7 +54,17 @@ Once you are:
 - Connected to the **University VPN**
 - Using **Terminal (macOS)** or **MobaXterm (Windows)**
 
-You can log in using the following command:
+You can log in as follows:
 
-```bash
+#### Mac
+Go to your terminal and type:
 ssh [username]@gomphus.bios.cf.ac.uk
+You should then be prompted for your university password
+NOTE: You will not see any characters as you type (not even *'s or o's) - just type it correctly and press enter
+
+#### Windows
+Follow the steps shown in the video in the "Demo" tab here: https://mobaxterm.mobatek.net/
+In the remote host box type: gomphus.bios.cf.ac.uk
+In the user name box type your University user name (NOTE: case sensitive!) then press "OK"
+
+
