@@ -75,29 +75,29 @@ Move to directory.
 cd /mnt/clusters/gomphus/data/[username]/
 ```
 
-Create a directory for data and one for scripts:
+Create a directory for data and one for scripts in the "long term storage" part of gomphus:
 
 ```bash
 mkdir /mnt/clusters/gomphus/data/[username]/data
 mkdir /mnt/clusters/gomphus/data/[username]/scripts
 ```
+These directories are stable, and you should keep anything in here that can't be easily repeated
 
-### If You Are Using `iago` (not relevent for FYPs)
-
-Some users may need to use:
+Create an analysis folder in "scratch" space:
 
 ```bash
-mkdir /mnt/scratch15/[username]
+mkdir /mnt/scratch/[username]/
 ```
+Scratch is not backed up, but has more space and analysis runs quicker here. Keep intermediate files here that you are working on, and periodically copy important ones to the above "data" directory.
 
 ---
 
-## 6. Where the Data Is Stored
+## 6. Where to find your project data
 
-### Main Dataset Location (Updated)
+### Main Dataset Location
 
 ```text
-/mnt/clusters/gomphus/data/classdata/FYPs_2526/
+/mnt/scratch/FYPs_2526/
 ```
 
 ***TASK*** Using the above commands - what data is in this folder? Which of it is yours? How many files do you have? Why this number?
@@ -109,10 +109,11 @@ mkdir /mnt/scratch15/[username]
 You should **never analyse shared data directly**.
 Instead, copy it to your own directory.
 
-### Copy to Your Data Directory
+### Copy to Your Data and scratch Directories
 
 ```bash
-cp /mnt/clusters/gomphus/data/classdata/FYPs_2526/[your_data] /mnt/clusters/gomphus/data/[username]/data/
+cp /mnt/scratch/FYPs_2526/[your_data] /mnt/scratch/[username]/
+cp /mnt/scratch/FYPs_2526/[your_data] /mnt/scratch/[username]/
 ```
 ---
 
@@ -146,7 +147,7 @@ This helps prevent wasted compute time.
 
 ## 10. Editing Analysis Scripts
 
-You will be provided with **template scripts** from your team folder.
+You will be provided with **template scripts** from the scripts folder in this GitHub repo.
 
 ### Your Tasks
 
@@ -157,7 +158,11 @@ You will be provided with **template scripts** from your team folder.
 Scripts can be stored in:
 
 * Your **home directory**
-* Or a dedicated `scripts` folder
+* Or in the dedicated `scripts` folder we created above:
+
+```text
+/mnt/clusters/gomphus/data/[username]/scripts
+```
 
 ---
 
