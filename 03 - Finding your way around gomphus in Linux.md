@@ -1,5 +1,5 @@
 
-# First Steps and Running Commands on Gomphus  - PART I
+# PART III: Simple Linux commands and navigating Gomphus
 ### Practical Guide for Cardiff Biological Sciences Students
 
 This guide walks you through **logging in, exploring the system and copying data** on the Gomphus cluster.  
