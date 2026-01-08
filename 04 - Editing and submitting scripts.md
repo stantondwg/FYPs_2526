@@ -13,8 +13,14 @@ You have been provided with **template scripts** from the scripts folder in this
 ### Your Tasks
 
 * Edit the scripts **on your own computer first**
+* We strongly suggest that you get some good text editing software for your computer!:
+```text
+Mac: https://www.barebones.com/products/bbedit/download.html
+Windows: https://notepad-plus-plus.org/
+ONLY USE THE FREE VERSIONS OF THESE
+```
 * Update file paths and filenames to match **your directories**
-* Create new script files on Gomphus
+* Create new script files on Gomphus and copy-paste your updated scripts into these
 
 Scripts can be stored in:
 
