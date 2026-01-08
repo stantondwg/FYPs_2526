@@ -1,4 +1,4 @@
-# Logging in to the Gomphus Computing Cluster  - PART II
+# PART II: Logging in to the Gomphus Computing Cluster
 ### Cardiff University Biocomputing Hub – Student Guide
 
 You should have received a **welcome email** from the Biocomputing Hub with your access details.  
