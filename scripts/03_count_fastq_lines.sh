@@ -13,7 +13,8 @@
 ## /mnt/scratch/FYPs_2526/Example_data_R2.fastq
 ## To your analysis folder:
 ## /mnt/scratch/[USERNAME]/
-## Replace the text in square brackets and submit to slurm
+## Replace the below text in square brackets and submit to slurm
+## How many lines are there in the file? How many reads? 
 
 DATA="/mnt/scratch/[USERNAME]/"
 FASTQ="[SAMPLE_ID].fastq.gz"
@@ -23,3 +24,5 @@ echo "Counting lines in ${FASTQ}"
 zcat ${DATA}${FASTQ} | wc -l > fastq_line_count.txt
 
 echo "Done. Output written to fastq_line_count.txt"
+
+
