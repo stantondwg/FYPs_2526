@@ -67,21 +67,22 @@ ls -lh
 
 ---
 
-## 5. Create Your Own Analysis Folder (Scratch Space)
+## 5. Navigate to Your Own Analysis Folder and create a directory (in your user's data directory)
 
-You must create a **personal scratch directory** for your analyses.
-
-```bash
-mkdir /mnt/scratch/[username]
-```
-
-Example:
+Move to directory.
 
 ```bash
-mkdir /mnt/scratch/ab1234
+cd /mnt/clusters/gomphus/data/[username]/
 ```
 
-### If You Are Using `iago`
+Create a directory for data and one for scripts:
+
+```bash
+mkdir /mnt/clusters/gomphus/data/[username]/data
+mkdir /mnt/clusters/gomphus/data/[username]/scripts
+```
+
+### If You Are Using `iago` (not relevent for FYPs)
 
 Some users may need to use:
 
@@ -96,24 +97,10 @@ mkdir /mnt/scratch15/[username]
 ### Main Dataset Location (Updated)
 
 ```text
-/mnt/scratch/FYP24-25_IMR_FH_DS/
+/mnt/clusters/gomphus/data/classdata/FYPs_2526/
 ```
 
-We will start working with data in the:
-
-```text
-2024_Dec_Nextseq
-```
-
-folder.
-
----
-
-### iago Dataset Location
-
-```text
-/mnt/scratch15/sbi4dws/CB_RightW/
-```
+***TASK*** Using the above commands - what data is in this folder? Which of it is yours? How many files do you have? Why this number?
 
 ---
 
@@ -122,18 +109,11 @@ folder.
 You should **never analyse shared data directly**.
 Instead, copy it to your own directory.
 
-### Copy to Your Scratch Folder
+### Copy to Your Data Directory
 
 ```bash
-cp /mnt/scratch15/sbi4dws/CB_RightW/[your_data] /mnt/scratch/[username]
+cp /mnt/clusters/gomphus/data/classdata/FYPs_2526/[your_data] /mnt/clusters/gomphus/data/[username]/data/
 ```
-
-### OR Copy to Your Data Directory (Long-term Storage)
-
-```bash
-cp /mnt/scratch15/sbi4dws/CB_RightW/[your_data] /mnt/clusters/gomphus/data/[username]
-```
-
 ---
 
 ## 8. Checking File Sizes
