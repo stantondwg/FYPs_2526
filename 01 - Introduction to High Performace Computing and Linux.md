@@ -1,4 +1,4 @@
-# Introduction to Computing Clusters & Linux  - PART I
+# PART I: Introduction to Computing Clusters & Linux
 ### For Biological Sciences Year 3 Research Projects (Cardiff University)
 
 ---
