@@ -1,4 +1,4 @@
-````markdown
+
 # First Steps and Running Commands on Gomphus  
 ### Practical Guide for Biological Sciences Students
 
@@ -259,4 +259,3 @@ By the end of this exercise, you should be able to:
 These are core skills for computational biology and research projects — take your time and experiment carefully.
 
 ```
-````
