@@ -39,7 +39,9 @@ You can find Terminal via:
 - You should use **MobaXterm**, a free SSH client
 
 Download MobaXterm:
+```text
 https://mobaxterm.mobatek.net/
+```
 
 MobaXterm provides:
 - An SSH terminal
