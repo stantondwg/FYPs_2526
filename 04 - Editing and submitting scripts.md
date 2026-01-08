@@ -1,4 +1,4 @@
-# First Steps and Running Commands on Gomphus  - PART II
+# PART IV: Editing and running scripts on Gomphus
 ### Practical Guide for Biological Sciences Students
 
 This guide walks you through **editing scripts, and running jobs** on the Gomphus cluster.  
