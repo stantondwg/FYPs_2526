@@ -38,5 +38,5 @@ DATA="/mnt/scratch/[USERNAME]/"
 ## Run fastp
 ############################################
 
-fastp -i ${DATA}Example_data/Example_data_R1.fastq.gz -I ${DATA}Example_data/Example_data_R2.fastq.gz -p -c --merge --merged_out=${DATA}Example_data_merged.fastq.gz -o ${DATA}Example_data_1_un.fastq.gz -O ${DATA}Example_data_2_un.fastq.gz  ${DATA}Example_data_log_report.html -j ${DATA}Example_data.json -R 'Example_data_params.report' -w 1  2> ${DATA}Example_data.log
+fastp -i ${DATA}/Example_data_R1.fastq.gz -I ${DATA}/Example_data_R2.fastq.gz -p -c --merge --merged_out=${DATA}Example_data_merged.fastq.gz -o ${DATA}Example_data_1_un.fastq.gz -O ${DATA}Example_data_2_un.fastq.gz  ${DATA}Example_data_log_report.html -j ${DATA}Example_data.json -R 'Example_data_params.report' -w 1  2> ${DATA}Example_data.log
 
