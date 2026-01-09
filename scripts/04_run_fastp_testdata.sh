@@ -2,8 +2,8 @@
 #SBATCH --partition=defq
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=1
-#SBATCH --cpus-per-task=4
-#SBATCH --mem-per-cpu=2000
+#SBATCH --cpus-per-task=1
+#SBATCH --mem-per-cpu=1000
 #SBATCH --error=04_fastp.err
 #SBATCH --output=04_fastp.out
 
@@ -19,7 +19,7 @@
 ## 2. Into your own analysis directory:
 ##    /mnt/scratch/[USERNAME]/
 ##
-## 3. Replace ALL text inside square brackets [] below
+## 3. Replace ALL text inside square brackets [] (including the backets) below
 ##    with your own username and sample ID.
 ##
 ## QUESTIONS TO THINK ABOUT:
@@ -34,46 +34,9 @@
 ## Path to your working directory
 DATA="/mnt/scratch/[USERNAME]/"
 
-## Sample ID (do NOT include _R1 or _R2)
-SAMPLE="[SAMPLE_ID]"
-
-############################################
-## Input FASTQ files
-############################################
-
-R1="${DATA}${SAMPLE}_R1.fastq.gz"
-R2="${DATA}${SAMPLE}_R2.fastq.gz"
-
-############################################
-## Output directory and files
-############################################
-
-## fastp output directory (will be created if it does not exist)
-OUTDIR="${DATA}fastp_output/"
-
-mkdir -p ${OUTDIR}
-
 ############################################
 ## Run fastp
 ############################################
 
-echo "Running fastp on sample: ${SAMPLE}"
-echo "Input R1: ${R1}"
-echo "Input R2: ${R2}"
+fastp -i ${DATA}Example_data/Example_data_R1.fastq.gz -I ${DATA}Example_data/Example_data_R2.fastq.gz -p -c --merge --merged_out=${DATA}Example_data_merged.fastq.gz -o ${DATA}Example_data_1_un.fastq.gz -O ${DATA}Example_data_2_un.fastq.gz  ${DATA}Example_data_log_report.html -j ${DATA}Example_data.json -R 'Example_data_params.report' -w 1  2> ${DATA}Example_data.log
 
-fastp \
-  --in1 ${R1} \
-  --in2 ${R2} \
-  --out1 ${OUTDIR}${SAMPLE}_R1_trimmed.fastq.gz \
-  --out2 ${OUTDIR}${SAMPLE}_R2_trimmed.fastq.gz \
-  --html ${OUTDIR}${SAMPLE}_fastp_report.html \
-  --json ${OUTDIR}${SAMPLE}_fastp_report.json \
-  --thread 4
-
-############################################
-## Finish message
-############################################
-
-echo "fastp has finished running."
-echo "Trimmed FASTQ files are in: ${OUTDIR}"
-echo "Open the HTML report in a web browser to view QC results."
