@@ -36,9 +36,6 @@ REF="/mnt/scratch/FYP24-25_IMR_FH_DS/refs/0_mitogenome_panel_250113.fasta"
 ## Path to your working directory
 DIR="/mnt/scratch/[USERNAME]/"
 
-## Sample name (do not include file extension)
-SAMPLE="YOURSAMPLE"
-
 ############################################
 ## Map reads to mitochondrial reference
 ############################################
