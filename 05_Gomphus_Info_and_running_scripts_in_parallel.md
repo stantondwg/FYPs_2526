@@ -101,47 +101,56 @@ sbatch submit.sh
 
 ## Running Tasks in Parallel (Simple Method)
 
-For **embarrassingly parallel workloads** (multiple independent commands), you can run several tasks at once within a single Slurm job by:
-1. Requesting multiple CPUs
-2. Running commands in the background using `&`
-3. Synchronising with `wait`
+For **embarrassingly parallel workloads** (multiple independent, single‑CPU commands), you can run several tasks at once within a single Slurm job by:
+
+1. Requesting multiple tasks (one per command)
+2. Launching each task in the background with `&`
+3. Waiting for all tasks to finish using `wait`
+
+This approach is useful when each command is **single‑threaded** and does not use OpenMP or internal parallelism.
 
 ### Example
-Request 4 CPUs and run 4 independent commands in parallel:
+Request 4 tasks and run 4 independent commands in parallel:
 
 ```bash
-#SBATCH --cpus-per-task=4
+#SBATCH --ntasks=4
 ```
 
 ```bash
-command1 &
-command2 &
-command3 &
-command4 &
+srun --exclusive -n 1 command1 &
+srun --exclusive -n 1 command2 &
+srun --exclusive -n 1 command3 &
+srun --exclusive -n 1 command4 &
 wait
 ```
 
-### IMPLEMENTING THIS 
-- Make the above edits in the 05script.sh in the "scripts" folder
-- Edit the file names and locations and "cpus-per-task" to work for your files
+- `--exclusive` ensures each command gets its own allocated task
+- `-n 1` tells Slurm each command uses exactly one task
+
+### IMPLEMENTING THIS
+- Make the above edits in `05script.sh` in the `scripts` folder
+- Update file names, paths, and `--ntasks` to match your workload
+- Ensure the number of commands matches the number of tasks requested
 
 ### Important Notes
-- The **number of background tasks must not exceed the CPUs requested**
-- Each background command should use **one CPU only**
-- `wait` ensures the job does not exit before all tasks complete
+- The **number of background commands must not exceed `--ntasks`**
+- Each command should use **one CPU only**
+- Do **not** use multi‑threaded software in this pattern
+- `wait` is essential to prevent the job from exiting early
 
 ### When to Use This
-- Running many small, independent analyses
+- Many small, independent analyses
 - Parameter sweeps
-- Batch processing of files
+- Processing many files with the same command
 
 ### When *Not* to Use This
-- Multi-threaded applications (use `--cpus-per-task` without `&`)
-- MPI jobs (use `srun` / `mpirun` instead)
+- Multi‑threaded applications (use `--cpus-per-task`, no `&`)
+- MPI jobs spanning nodes (use `srun` or `mpirun` correctly)
 
 ---
 
 ## Parallel Jobs (Other Models)
+
 Supported parallelisation methods:
 - **MPI** (multi-process, multi-node)
 - **Multi-threading** (OpenMP/pthreads, single node)
