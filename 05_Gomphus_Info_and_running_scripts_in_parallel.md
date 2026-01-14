@@ -1,4 +1,4 @@
-# Gomphus HPC Cluster – Quick Summary
+# Gomphus HPC Cluster – Quick Reminder and Notes on Running Jobs in Parallel
 
 ## Overview
 **Gomphus** is a small High-Performance Computing (HPC) cluster designed for training users in HPC methodologies.  
