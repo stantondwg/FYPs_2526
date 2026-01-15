@@ -31,7 +31,7 @@ module load samtools
 ############################################
 
 ## Path to mitochondrial reference FASTA
-REF="/mnt/scratch/FYP24-25_IMR_FH_DS/refs/0_mitogenome_panel_250113.fasta"
+REF="/mnt/scratch/FYPs_2526/0_mitogenomes_ref.260107.fasta"
 
 ## Path to your working directory
 DIR="/mnt/scratch/[USERNAME]/"
