@@ -8,6 +8,7 @@ This script maps **merged sequencing reads** to a panel of mitochondrial genomes
 
 > **Important:** This is only mitochondrial DNA. It **does not provide any information about nuclear DNA content**, and results are limited by the reference database used.
 
+This task is also intended to give you an understanding of what mapping is and what the imitations are
 ---
 
 ## Key Features of the Script
