@@ -1,40 +1,43 @@
-#!/bin/bash
-#SBATCH --partition=defq
-#SBATCH --nodes=1
-#SBATCH --ntasks=1
-#SBATCH --cpus-per-task=1
-#SBATCH --mem-per-cpu=1000
-#SBATCH --error=08_mapping_to_single_mito_genome.err
-#SBATCH --output=08_mapping_to_single_mito_genome.out
+# Mapping to a single mito genome
 
-## This script uses bwa to map to a single mitochondrial genome, rather than the "Multi Mito" alignment (bam file)
-## Intended to be run on slurm, with extra info/context given in: "08 - Mapping to single mito genome.md"
-## Note - you will need to create and index that mito genome before you can map to it. See details in: "08 - Mapping to single mito genome.md"
+## Brief description
+- The below gives a brief description of how and why you map to 1 mito genome, rather than the panel that you did previously
+- This is intended to give extra context for the "08_mapping_to_single_mito_genome.sh" script
+- Here, you index the mitochondrial genome directly on the head node because it is small, and doesn't use much processing power
+- For anything larger, you should do that using a slurm script
 
-############################################
-## Load required modules
-############################################
+## Finding the reference genome
+- The choice of reference genome depends on your particular project/study system **and** what data is available
+- Many mito genomes are already found in the "Multi Mito" file that you have worked on previously
+- You can view those in the file, like this:
 
+```bash
+less /mnt/scratch/FYPs_2526/0_mitogenomes_ref.260107.fasta
+```
+
+- To check all the mito genomes that are present in that file, you can use a program called "grep" to search all the sequence IDs
+- All those IDs start with a ">" in a fasta file, so doing this will print them all out
+
+```bash
+grep ">" /mnt/scratch/FYPs_2526/0_mitogenomes_ref.260107.fasta
+```
+
+
+ 
+## Loading Required Software
+All mapping and indexing is done with **bwa**. Load the module with:
+
+```bash
 module load bwa
-module load samtools
+```
 
-############################################
-## User-defined variables (EDIT THESE)
-############################################
+You can also include this line in your Slurm scripts if you are processing BAM files in a job.
 
-## Path to your working directory
-## Update these to point towards your data and the genome you want to map to
-DIR="/mnt/scratch/[USERNAME]/"
-REF="/mnt/scratch/[USERNAME]/[YOUR_MITO_GENOME].fasta"
+---
 
-############################################
-## Map reads to mitochondrial reference
-############################################
+## Quick Viewing Examples - these commands can be run directly on the terminal
 
-## This uses bwa aln/samse for short-read alignment
-## Output is a sorted BAM file
-## HERE IF YOU HAVE LOTS OF FILES - YOU COULD:
-## 1. Submit them all in parallel (as per previous scripts)
-## 2. Loop through your files with a simple "bash loop" and output the results into a single output file
-
-bwa aln -l 16500 -n 0.01 -o 2 -t 1 ${REF} ${DIR}[YOUR_SAMPLE1]_merged.fq.gz | bwa samse ${REF} - ${DIR}/[YOUR_SAMPLE1]_merged.fq.gz | samtools sort - > ${DIR}/[YOUR_SAMPLE1].single.mito.bam
+### View top lines of a BAM file
+```bash
+samtools view /your/file/location/your_file_name.bam | head
+```
