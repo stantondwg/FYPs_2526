@@ -40,17 +40,15 @@ samtools view -h /path/file.mapped.bam \
 ## Extract your data
 - Download your mapped, duplicates removed bam file(s)
 - **Before you do this** make sure that the file sizes are not too large!
-
-On a mac:
+- On a mac:
 ```bash
 scp sbi4dws@gomphus.bios.cf.ac.uk:/path/to/your/file/name_of_file.bam /path/on/local/computer/
 ```
-If you are using MobaXterm - you should be able to use the file browser on the left to download
-
+- If you are using MobaXterm - you should be able to use the file browser on the left to download
 - Download the reference mito genome that you mapped to (to the same folder
 - (as above) 
-- Download this software onto your laptop:
 
+Next: Download this software onto your laptop:
 ```text
 https://www.geneious.com/
 ```
