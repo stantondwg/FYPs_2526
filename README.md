@@ -61,7 +61,8 @@ Notes
 - Always check file paths, sample names and resource settings before submitting jobs to Gomphus.
 
 License
-- No license file is included in the repository. Add a LICENSE file if you want to specify reuse terms.
+- Scripts and code in this repository are licensed under the MIT License: see <a>LICENSE</a>.
+- Documentation and other non-code materials (Markdown files, text content) are licensed under Creative Commons Attribution 4.0 International (CC BY 4.0): see <a>LICENSE-CC-BY-4.0.md</a>.
 
 ---
 Prepared for 2025–2026 Final Year Project students.
