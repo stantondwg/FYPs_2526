@@ -38,3 +38,6 @@ REF="/mnt/scratch/[USERNAME]/[YOUR_MITO_GENOME].fasta"
 ## 2. Loop through your files with a simple "bash loop" and output the results into a single output file
 
 bwa aln -l 16500 -n 0.01 -o 2 -t 1 ${REF} ${DIR}[YOUR_SAMPLE1]_merged.fq.gz | bwa samse ${REF} - ${DIR}/[YOUR_SAMPLE1]_merged.fq.gz | samtools sort - > ${DIR}/[YOUR_SAMPLE1].single.mito.bam
+
+### If you need to do paired-end mapping, as follows:
+# bwa mem -t 1 ${REF} ${DIR}[YOUR_SAMPLE1]_un1.fq.gz ${DIR}[YOUR_SAMPLE1]_un2.fq.gz -O BAM -o ${DIR}[YOUR_SAMPLE1]_PEmem.bam
