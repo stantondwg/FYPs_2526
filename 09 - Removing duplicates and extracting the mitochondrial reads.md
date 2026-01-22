@@ -61,7 +61,3 @@ https://www.geneious.com/
 - **From this point, if your project is focussing on mitochondrial genomes:** You will be creating a consensus sequence from this bam file for each of your samples
 - Take some time to pause at this step and think what the results mean for your analysis going forward
 - How this file(s) looks will likely determine many of your next steps
-
-  - `samtools flagstat OtterOnly_mapped.rmdup.bam`
-  - `samtools depth -a OtterOnly_mapped.rmdup.bam | awk '{sum+=$3}END{print "mean depth:", sum/NR}'`
-- Proceed to variant calling or coverage summaries using the deduplicated BAM.
