@@ -74,3 +74,14 @@ awk 'NR % 2 == 0 { gsub(/[^AGTC]/, "N") } 1' file.fasta > file.Ns.fasta
   2. Run the above command directly into the terminal
   3. Copy the file back
 
+## Aligning
+
+Your file can now be aligned. Details about this step to follow (let me know if you get here and are stuck), but briefly:
+
+- Your fasta can be aligned using ClustalOmega (other options are available):
+https://www.ebi.ac.uk/jdispatcher/msa/clustalo
+- Choose "fasta" as the output format
+- Put the alignment back into geneious and manually inspect it
+- Do you have any large gaps/mis-alignements? These may need manual editing
+- Do you have uneven sequence lengths (you will!)? These should be trimmed. You can do these things in Geneious
+- Once you have a clean alignment you can use that as an input for a phylogeny
