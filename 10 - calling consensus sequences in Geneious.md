@@ -36,4 +36,41 @@ Masking low-coverage regions with 'N' is generally preferred to avoid spurious c
 - Choose FASTA format and save the file (e.g., Sample01_consensus.fasta).
 Record coverage ("breadth" and "depth"), number of reads, and any other information you believe might be relevant
 
+## Consensus fasta files
+
+- You should now have a/some consensus fasta files exported locally to your computer
+- The next step is to combine these into a single file, with any other sequences that you want to analyse them alongside (taht you have retrieved e.g. from Genbank)
+- A fasta file is really just a "plain text" file with a particular format and the .fasta extension
+- You can therefore just combine these files in your text editor (Notepad++ or BBEdit - format it so that the sequences are all on a single line [1 line for ID, 1 line for sequence]):
+
+```text
+>Your_sample_1
+ACRGTCGATCGATGCTGACTGATCGATCGACTGACTGCATGACTCATACATCGATGCTGTGCTGGACTGAATCAT
+>Your_sample_2
+ACGGTCSATCGATGCTGACTGATCGATCGACTGACTGCATGACTCATACATCGATGCTGTGCTGGACTGAATCAT
+>GenBank_sample_1
+ACGGTCGATCGATGCTYACTGATCGATCGACTGACTGCATGACTCATACATCGATGCTGTGCTGGACTGAATCAT
+```
+You will be aligning these sequences and creating phylogenies/networks etc.
+When doing this step, you must therefore consider:
+- Do I need an outgroup included?
+- Am I comparing the same gene/region in the sequences that I am including?
+- Have I got all the relevent available data?
+- Have I got any sequences in here that are not necessary/relevent?
+
+## Final processing
+- Before you align, there is one last step.
+- Your sequences likely contain a number of "ambiguity codes"
+- These are bases other than AGTC, representing the consensus caller's uncertainty about which is the correct base call 
+- For example, the 3rd base in the above sequence "Your_sample_1" is an R, corresponding to either a an A or G (puRine)
+- We don't want these, so we can change them to "N" (totally unknown) with a single line of code:
+
+```bash
+awk 'NR % 2 == 0 { gsub(/[^AGTC]/, "N") } 1' file.fasta > file.Ns.fasta
+```
+- You can run this on your terminal (if you use a mac)
+- If on windows, a pragmatic way to do it (there are other options) would be to:
+  1. Copy the file onto gomphus
+  2. Run the above command directly into the terminal
+  3. Copy the file back
 
