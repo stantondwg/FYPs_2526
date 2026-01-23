@@ -49,4 +49,20 @@ samtools view -q 20 ${DIR}/[YOUR_SAMPLE1].single.mito.bam -O BAM -o ${DIR}/[YOUR
 ## Output a version without duplicates
 
 samtools view -h ${DIR}[YOUR_SAMPLE1].single.mito.mapped.q20.bam | python ${RMDUP} | samtools view -bS - > ${DIR}[YOUR_SAMPLE1].single.mito.mapped.q20.rmdup.bam
+module load samtools
+
+#### WITH PAIRED-END READS
+# DIR="/path/to/data/"
+# 
+# ### Use a file with only mapped reads (it is smaller and so will be much quicker)
+# ### If you don't have one, make one:
+# 
+# samtools view -b -F 4 -o ${DIR}SAMPLE.1mito.SE.mapped.bam ${DIR}SAMPLE.1mito.SE.mapped.bam
+# 
+# ### Remove duplicates
+# 
+# samtools sort ${DIR}SAMPLE.1mito.PE.mapped.bam -n -o ${DIR}SAMPLE.PE.sorted.bam
+# samtools fixmate -m ${DIR}SAMPLE.PE.sorted.bam ${DIR}SAMPLE.PE.sorted.fixmate.bam
+# samtools sort -o ${DIR}SAMPLE.PE.pos.sorted.fixmate.bam ${DIR}SAMPLE.PE.sorted.fixmate.bam
+# samtools markdup -r ${DIR}SAMPLE.PE.pos.sorted.fixmate.bam ${DIR}SAMPLE.PE.final.bam
 
