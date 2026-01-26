@@ -1,78 +1,76 @@
-# Mapping to a Nuclear Genome – Purpose and Workflow Notes
+# Mapping to a Nuclear Genome – Notes and Tips
 
 ## Overview
-This script is designed to map sequencing reads to a nuclear genome reference. It ensures a systematic approach to evaluating nuclear DNA assembly quality and identifying potential contamination or misalignments. The script provides flexibility by allowing users to define paths for input files and output storage.
+This script maps sequencing reads to a nuclear genome for your species of interest. It uses the **BWA aln** tool for alignment and outputs sorted BAM files.
 
 ---
 
-## Key Features of the Script
-- Maps reads using the **BWA mem** alignment tool for genomic-scale references.
-- Outputs sorted BAM files using `samtools`.
-- Allows custom configuration for:
-  - Reference genome file path.
-  - Input sample data.
-  - Scratch space or working directory locations.
+## Finding and Downloading a Nuclear Genome
+The nuclear genome you use must match your project requirements and species. Common sources for nuclear genome FASTA files include:
+
+1. **NCBI Genome Database**:  
+   Search and download from the NCBI Assembly or GenBank portals:  
+   [https://www.ncbi.nlm.nih.gov/genome/](https://www.ncbi.nlm.nih.gov/genome/)
+
+   Example for downloading a FASTA file to the cluster:
+   ```bash
+   wget https://ftp.ncbi.nlm.nih.gov/genomes/refseq/some_species/some_genome.fasta
+   ```
+
+2. **Ensembl Genome Browser**:  
+   A comprehensive source for vertebrate and model organism genomes:  
+   [https://www.ensembl.org/](https://www.ensembl.org/)
+
+   After selecting your species, navigate to the **Downloads** section to get the primary assembly FASTA.
+
+3. **UCSC Genome Browser**:  
+   Another database for downloading reference assemblies:  
+   [http://genome.ucsc.edu/](http://genome.ucsc.edu/)
+
+   UCSC’s "Genome Downloads" section provides curated genomes in FASTA format.
+
+4. **Species-Specific Databases**:  
+   Many research communities maintain dedicated databases. For example:
+   - FlyBase for Drosophila
+   - WormBase for C. elegans
+   - Phytozome for plant genomes
 
 ---
 
-## User-defined Variables (Things You Need to Edit)
-Before running the script, ensure you modify the following variables as required for your dataset:
-- `REF_NUCLEOME` – Path to the nuclear genome reference FASTA file.
-- `DIR_IN` – Path where your raw sequencing files are stored.
-- `DIR_OUT` – Path for sorted alignment output (should be a scratch or project data directory).
-- `SAMPLE` – Define the sample file name you’re working with.
+## User-defined Variables (Things You Must Edit)
+- `REF` – Path to the nuclear genome FASTA file you downloaded.
+- `DIR` – Path to your input/iutput data.
 
-Ensure all file paths are **absolute paths** to prevent errors during job execution.
+Ensure all paths are fully specified, and filenames match your dataset.
 
 ---
 
-## Workflow Steps and Example Usage
-### Step 1: Prepare Your Environment
-- Ensure the appropriate modules (e.g., `bwa`, `samtools`) are loaded using the `module load` command.
-
+## Submitting the Script on Gomphus
+To submit your job, use:
 ```bash
-module load bwa
-module load samtools
+sbatch 11_map_to_nuc.sh
 ```
 
-### Step 2: Submit the Job to Gomphus via Slurm
-Submit the script for processing using Slurm:
-
-```bash
-sbatch 10_map_to_nuc.sh
-```
-
-### Example Logging and Error Files:
-Check the `*.out` and `*.err` files in the same directory for job progress and potential errors:
-```text
-10_map_to_nuc.out
-10_map_to_nuc.err
-```
+Check the output and error logs for any issues:
+- `11_map_to_nuc.out`
+- `11_map_to_nuc.err`
 
 ---
 
-## Considerations and Questions to Address Before Running
-1. **Reference Genome Selection**:
-   - Have you chosen the correct nuclear genome for your species? 
-   - A mismatched genome can lead to significant alignment errors.
-   
-2. **Alignment Quality**:
-   - Does `BWA mem` perform adequately for the read lengths and quality of your dataset?
+## Things to Keep in Mind
+1. **Reference Accuracy**  
+   Verify the nuclear genome reference matches your species or study system to avoid misalignments.
 
-3. **Resource Allocation**:
-   - This script is optimized for **single-task execution**. If aligning multiple samples, consider adjusting the script for parallel submission.
+2. **Annotation Files**  
+   Some reference sources (like NCBI or Ensembl) also provide annotation GTF/GFF files — consider downloading these if you need to interpret alignment results later.
 
----
+3. **File Size Limits**  
+   Large reference genomes may take significant time to process; ensure sufficient computational resources are allocated when running the script.
 
-## General Notes for Job Execution on Gomphus
-- Always confirm software dependencies are loaded.
-- Use the `squeue` command to monitor your job status:
-```bash
-squeue -u <username>
-```
-- Use `scancel` to cancel jobs if needed:
-```bash
-scancel <jobid>
-```
+4. **Updating Reference Indexing**  
+   If the genome file changes or you add additional sequences, you’ll need to recreate the BWA index:
+   ```bash
+   bwa index /path/to/reference.fasta
+   ```
 
 --- 
