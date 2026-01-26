@@ -1,0 +1,30 @@
+#!/bin/bash
+#SBATCH --partition=defq
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=1
+#SBATCH --cpus-per-task=4
+#SBATCH --mem-per-cpu=1000
+#SBATCH --error=10_map_nuc.err
+#SBATCH --output=10_map_nuc.out
+
+
+### THIS SCRIPT IS FOR ANYONE WHO WANTS TO MAP THEIR READS TO A NUCLEAR GENOME AS WELL AS THE MITOCHONDRIAL ONE
+### THIS IS THE SAME AS THE MITOCHONDRIAL SCRIPT AND USES THE SAME INPUT (MERGED) FILES
+### SO THE EASIEST WAY TO DO IT IS TO JUST EDIT THAT PREVIOUS SCRIPT TO UPDATE THE REFERENCE AND OUTPUT FILES (SEE BELOW)
+### NOT ALL PROJECTS WILL NEED/WANT TO DO THIS
+### YOU MUSET FIRST IDENTIFY A NUCLEAR GENOME AND DOWNLOAD IT
+
+module load bwa samtools
+
+### DEFINE DIRECTORY
+DIR="/mnt/scratch/[USERNAME]/"
+
+### THIS IS THE REFERENCE THAT YOU ARE MAPPING TO: IN THIS CASE - NUCLEAR GENOMES
+REF="/mnt/scratch/[USERNAME]/[YOUR_NUCLEAR_GENOME].fasta"
+
+### Make sure to index your reference genome
+### YOU ONLY NEED TO DO THIS ONCE!
+bwa index ${REF}
+
+### MAPPING
+bwa aln -l 16500 -n 0.01 -o 2 -t 3 ${REF} ${DIR}YOURSAMPLE_merged.fq.gz | samtools sort --threads 3 | samtools view -@ 3 -O BAM -o ${INOUT}YOURSAMPLE.nuc.bam
